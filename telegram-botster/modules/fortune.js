@@ -2,7 +2,7 @@ const contentGrabber = require('./getcontent.js');
 module.exports = {
   name: 'fortune',
   description: 'Fortune Cookie',
-  execute(msg, args) {
-    contentGrabber.getcontent(msg, args, 'fortune');
+  execute(bot, channel, from, text) {
+    contentGrabber.getcontent(bot, channel, from, text, 'fortune');
   },
 };

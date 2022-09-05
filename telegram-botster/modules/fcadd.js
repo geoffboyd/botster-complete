@@ -2,7 +2,10 @@ const adder = require('./addinfo.js');
 module.exports = {
   name: 'fcadd',
   description: 'Add new fortunes',
-  execute(msg, args) {
-    adder.contentinfo(msg, args, 'fortune', 'Fortune Cookie fortune')
+  execute(bot, channel, from, text, commandNames) {
+    let args = text.split(' ');
+    args.shift();
+    text = args.join(' ');
+    adder.contentinfo(bot, channel, from, text, 'fortune', 'Fortune Cookie fortune')
   },
 };

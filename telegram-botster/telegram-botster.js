@@ -10,7 +10,7 @@ Telegram botster v1.0
 */
 
 const Telegraf = require('telegraf').Telegraf;
-const { token, botName, prefix } = require('../conf/tgConf.json');
+const { token, botName, prefix } = require('../conf/tgConfig.json');
 const bot = new Telegraf(token);
 const MarkovChain = require('markovchain');
 const fs = require('fs');
@@ -19,8 +19,10 @@ const db = new SQLite('../db/userinputs.sqlite');
 const wiki = require('wikijs').default;
 const translate = require('@iamtraction/google-translate');
 const ud = require('urban-dictionary');
+const commandFiles = fs.readdirSync('./modules/').filter(file => file.endsWith('.js'));
 
 let commandNames = [];
+
 for (const file of commandFiles) {
   const command = require(`./modules/${file}`);
   commandNames.push(file.replace('.js', ''));
@@ -33,7 +35,7 @@ console.log('\x1b[32m%s\x1b[0m', `Signed in to Telegram.`);
 bot.on('text', ctx => {
   if (ctx.message.from.is_bot) { return }
   const channel = ctx.chat.id;
-  const from = ctx.message.from
+  const from = ctx.message.from.first_name;
   let text = ctx.message.text;
 
   // Markov chain
@@ -51,7 +53,7 @@ bot.on('text', ctx => {
   if (text.toLowerCase().includes(botName.toLowerCase()) || randomFuckery === 10) {
     //Markov chain triggers here
     let args = text.split(' ');
-    let startWord = from;
+    let startWord = from.toString();
     let phraseLength = (Math.ceil(Math.random()*((args.length + 10)*2)));
     if (args[1]) {
       if (args[1].toLowerCase().includes(botName.toLowerCase())) {
@@ -75,9 +77,10 @@ bot.on('text', ctx => {
 
   if (text.includes('audio') || text.includes('tech') || text.includes('excuse')) {
     let thisCommand = require(`./modules/jargon.js`);
-    return thisCommand.execute(bot, channel, text.split(' '), from, to);
+    return thisCommand.execute(bot, channel, from, text, commandNames);
   }
 
+  let lowerCaseArgs = text.toLowerCase().split(' ');
   let commandAttempt = lowerCaseArgs[0].substring(1).toLowerCase();
   if (!commandNames.includes(commandAttempt)){ return console.log('\x1b[31m%s\x1b[0m', `${from} attempted to use a command that doesn't exist: ${commandAttempt}`) }
   const commandToRun = require(`./modules/${commandAttempt}.js`);

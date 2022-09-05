@@ -1,5 +1,6 @@
 module.exports = {
-  contentinfo(msg, args, contentType, phrase) {
+  contentinfo(bot, channel, from, text, contentType, phrase) {
+    if (!text) { return bot.telegram.sendMessage(channel, `You need to tell me what ${phrase} you want to add`) }
     const SQLite = require("better-sqlite3");
     const db = new SQLite('../db/userinputs.sqlite');
     // Check if the table "userinputs" exists.
@@ -13,16 +14,13 @@ module.exports = {
       db.pragma("journal_mode = wal");
     }
     let addInputs = db.prepare("INSERT INTO userinputs (user, channel, type, content, lastUsed, dateAdded) VALUES (@user, @channel, @type, @content, @lastUsed, @dateAdded);");
-    let content = msg.content.split(' ');
-    content.shift();
-    content = content.join(' ');
     let date = Math.floor(new Date() / 1000);
-    const dbObject = { user: msg.member.user.tag, channel: msg.guild.id, type: `${contentType}`, content: `${content}`, lastUsed: `${date}`, dateAdded: `${date}` };
-    if (content.length > 0) {
+    const dbObject = { user: from, channel: channel, type: contentType, content: text, lastUsed: date, dateAdded: date };
+    if (text.length > 0) {
       addInputs.run(dbObject);
-      msg.channel.send(`A new ${phrase} has been added!`);
+      bot.telegram.sendMessage(channel, `A new ${phrase} has been added!`);
     } else {
-      msg.channel.send(`You need to tell me the ${phrase} to add!`);
+      bot.telegram.sendMessage(channel, `You need to tell me the ${phrase} to add!`);
     }
   }
 }

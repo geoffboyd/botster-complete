@@ -20,7 +20,7 @@ Chatbot for Discord and IRC
 4. Start the bots
   * For Discord: `cd discord-botster && node discord-botster.js`
   * For IRC: `cd irc-botster && node irc-botster.js`
-  * Alternatively, use PM2 to run the bot in the background
+  * Alternatively, use PM2 to run the bot in the background (this is best practice)
     * For Discord: `cd discord-botster && pm2 discord-botster.js`
     * For IRC: `cd irc-botster && pm2 irc-botster.js`
 
