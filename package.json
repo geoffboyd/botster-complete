@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "better-sqlite3": "^7.6.2",
+    "discord.js": "^14.3.0",
+    "irc": "^0.5.2",
+    "markovchain": "^1.0.2",
+    "urban-dictionary": "^3.0.2",
+    "wikijs": "^6.3.3"
+  }
+}
