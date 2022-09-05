@@ -3,7 +3,7 @@ module.exports = {
   description: 'Get info on the last item used from the randomizer',
   execute(bot, channel, args, type) {
     const SQLite = require("better-sqlite3");
-    const db = new SQLite('../../db/userinputs.sqlite');
+    const db = new SQLite('../db/userinputs.sqlite');
     // Check if the table "userinputs" exists and has content from this channel.
     const table = db.prepare(`SELECT count(*) FROM userinputs WHERE (channel = '${channel}' OR channel = 'Global') AND type = '${type}';`).get();
     if (!table['count(*)']) {

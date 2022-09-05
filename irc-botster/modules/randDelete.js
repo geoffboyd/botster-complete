@@ -3,7 +3,7 @@ module.exports = {
   description: 'Delete an item from the randomizer by row ID number',
   execute(bot, channel, args, type) {
     const SQLite = require("better-sqlite3");
-    const db = new SQLite('../../db/userinputs.sqlite');
+    const db = new SQLite('../db/userinputs.sqlite');
     // Check if the table "userinputs" exists.
     const table = db.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'userinputs';").get();
     if (!table['count(*)']) {

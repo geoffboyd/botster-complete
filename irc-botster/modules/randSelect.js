@@ -4,7 +4,7 @@ module.exports = {
   execute(bot, channel, args, from, to) {
     // function originally wanted: channel(!), command(!), type(!), response(!), args(!), from(!)
     const SQLite = require("better-sqlite3");
-    const db = new SQLite('../../db/userinputs.sqlite');
+    const db = new SQLite('../db/userinputs.sqlite');
     const command = args[0].substring(1);
     const type =
       command === 'insult' ? 'insult'

@@ -1,7 +1,7 @@
 module.exports = {
   getcontent(bot, channel, args, from, to) {
     const SQLite = require("better-sqlite3");
-    const db = new SQLite('../../db/userinputs.sqlite');
+    const db = new SQLite('../db/userinputs.sqlite');
     const command = args[0].substring(1);
     const type =
       command === 'insult' ? 'insult'

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@iamtraction/google-translate": "^1.1.2",
     "better-sqlite3": "^7.6.2",
     "discord.js": "^14.3.0",
     "irc": "^0.5.2",
