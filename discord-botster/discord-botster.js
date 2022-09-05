@@ -6,7 +6,7 @@
 | |_) | (_) | |_\__ \ ||  __/ |
 |_.__/ \___/ \__|___/\__\___|_|
 
-Discord botster v1.0rc using DiscordJS V14
+Discord botster v1.0 using DiscordJS V14
 */
 
 const fs = require('fs');

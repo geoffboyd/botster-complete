@@ -14,7 +14,7 @@ Chatbot for Discord
 [Click here](https://discord.com/api/oauth2/authorize?client_id=724806991947497554&permissions=8&scope=bot) to add botster directly to your Discord server now without having to set up an environment to run the bot yourself. If you'd rather self-host, keep reading below.
 
 ## Commands and usage
-The default prefix to send a bot command is `.`. You can change that in `./conf/config.jason` to instead use whatever character you choose. I'm going to use `.` below for my notation, but replace that with whatever you choose for your instance.
+The default prefix to send a bot command is `.`. You can change that in `./conf/discConfig.jason` to instead use whatever character you choose. I'm going to use `.` below for my notation, but replace that with whatever you choose for your instance.
 - `.8ball` - Asks a Magic Eightball for guidance. Feed it a yes or no question, or just think your question. It knows all.
 - `.8balladd [new eightball prediction]` - Feed the Magic Eightball with new replies. Try using links to GIFs, too!
 - `.8ballinfo` - Tells you who added the most recently seen 8ball prediction, the database row it is saved on, and when it was added.
