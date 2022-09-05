@@ -4,7 +4,7 @@ module.exports = {
     execute(msg, args) {
       args.shift();
       const SQLite = require("better-sqlite3");
-	    const db = new SQLite('./db/userinputs.sqlite');
+	    const db = new SQLite('../../db/userinputs.sqlite');
 
 	    // Check if the table "draconic" exists.
 	    const table = db.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'draconic';").get();

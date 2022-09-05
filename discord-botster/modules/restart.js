@@ -1,4 +1,4 @@
-const { owner } = require("../conf/config.json");
+const { owner } = require("../../conf/config.json");
 
 module.exports = {
   name: 'restart',

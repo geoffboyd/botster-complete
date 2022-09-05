@@ -8,7 +8,7 @@ module.exports = {
     args.shift();
     if (isNaN(args[0])) { return msg.channel.send("You didn't enter an ID number"); }
     const SQLite = require("better-sqlite3");
-    const db = new SQLite('./db/userinputs.sqlite');
+    const db = new SQLite('../../db/userinputs.sqlite');
     // Check if the table "userinputs" exists.
     const table = db.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'userinputs';").get();
     if (!table['count(*)']) {
