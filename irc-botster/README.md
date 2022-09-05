@@ -45,7 +45,7 @@ The default prefix to send a bot command is `.`. You can change that in `./conf/
 
 MIT License
 
-Copyright (c) 2019 StuartIanNaylor
+Copyright (c) 2022 Geoff Boyd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
