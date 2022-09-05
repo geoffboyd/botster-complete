@@ -7,10 +7,8 @@
 |_.__/ \___/ \__|___/\__\___|_|   
 
 ```                                
-# telegram-botster v0.9 stillBorked (but getting closer)
+# telegram-botster v1.0rc
 Chatbot for Telegram
-
-THIS BOT IS NOT YET COMPLETE. Please go back and download the 1.0.0 release if you want something that works. The Telegram bot is not ready for release yet, and as such, is not yet being included in an official release. This is very much still a work-in-progress.
 
 ## Commands and usage
 The default prefix to send a bot command is `.`. You can change that in `./conf/tgConfig.jason` to instead use whatever character you choose. I'm going to use `.` below for my notation, but replace that with whatever you choose for your instance.
