@@ -1,7 +1,7 @@
 module.exports = {
   contentinfo(msg, args, contentType, phrase) {
     const SQLite = require("better-sqlite3");
-    const db = new SQLite('../db/userinputs.sqlite');
+    const db = new SQLite('./db/userinputs.sqlite');
     // Check if the table "userinputs" exists.
     const table = db.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'userinputs';").get();
     if (!table['count(*)']) {
@@ -12,13 +12,12 @@ module.exports = {
       db.pragma("synchronous = 1");
       db.pragma("journal_mode = wal");
     }
-    var addInputs = db.prepare("INSERT INTO userinputs (user, channel, type, content, lastUsed, dateAdded) VALUES (@user, @channel, @type, @content, @lastUsed, @dateAdded);");
-    var type = contentType;
-    var content = msg.content.split(' ');
-    var date = Math.floor(new Date() / 1000);
+    let addInputs = db.prepare("INSERT INTO userinputs (user, channel, type, content, lastUsed, dateAdded) VALUES (@user, @channel, @type, @content, @lastUsed, @dateAdded);");
+    let content = msg.content.split(' ');
     content.shift();
     content = content.join(' ');
-    const dbObject = { user: msg.member.user.tag, channel: msg.guild.id, type: `${contentType}`, content: `${content}`, lastUsed: `${date}`, dateAdded: `$date}` };
+    let date = Math.floor(new Date() / 1000);
+    const dbObject = { user: msg.member.user.tag, channel: msg.guild.id, type: `${contentType}`, content: `${content}`, lastUsed: `${date}`, dateAdded: `${date}` };
     if (content.length > 0) {
       addInputs.run(dbObject);
       msg.channel.send(`A new ${phrase} has been added!`);

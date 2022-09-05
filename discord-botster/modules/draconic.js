@@ -4,17 +4,17 @@ module.exports = {
     execute(msg, args) {
       args.shift();
       const SQLite = require("better-sqlite3");
-	    const fantasylang = new SQLite('../db/fantasylanguages.db');
+	    const db = new SQLite('./db/userinputs.sqlite');
 
-	    // Check if the table "fantasylanguages" exists.
-	    const table = fantasylang.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'fantasylanguages';").get();
+	    // Check if the table "draconic" exists.
+	    const table = db.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'draconic';").get();
 	    if (!table['count(*)']) {
 	      // If the table isn't there, create it and setup the database correctly.
-	      fantasylang.prepare("CREATE TABLE fantasylanguages (row INTEGER NOT NULL PRIMARY KEY, common TEXT, draconic TEXT, notes TEXT, author TEXT);").run();
+	      db.prepare("CREATE TABLE draconic (row INTEGER NOT NULL PRIMARY KEY, common TEXT, draconic TEXT, notes TEXT, author TEXT);").run();
 	      // Ensure that the "row" row is always unique and indexed.
-	      fantasylang.prepare("CREATE UNIQUE INDEX idx_fantasylanguages_row ON fantasylanguages (row);").run();
-	      fantasylang.pragma("synchronous = 1");
-	      fantasylang.pragma("journal_mode = wal");
+	      db.prepare("CREATE UNIQUE INDEX idx_fantasylanguages_row ON draconic (row);").run();
+	      db.pragma("synchronous = 1");
+	      db.pragma("journal_mode = wal");
 	    }
 	    if (!args.length) {
 	    	msg.channel.send('What am I translating here?');
@@ -24,7 +24,7 @@ module.exports = {
 	    	let draconicPhrase = [];
 			for (c=0; c<words.length; c++) {
 	   			//check for word mapping in DB, if found, add to draconicPhrase array
-   				var dracWord = fantasylang.prepare(`SELECT * FROM draconic WHERE common = '${words[c]}';`).get();
+   				let dracWord = db.prepare(`SELECT * FROM draconic WHERE common = '${words[c]}';`).get();
    				if (dracWord){
 					draconicPhrase.push(dracWord['draconic']);
 				} else {

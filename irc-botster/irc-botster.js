@@ -6,7 +6,7 @@ console.log('\x1b[32m%s\x1b[0m', 'Starting the botster IRC client...');
 const irc = require('irc');
 const fs = require('fs');
 const { exec } = require('child_process');
-const { channels, server, botName, prefix } = require('./conf/config.json');
+const { channels, server, botName, prefix } = require('../conf/ircConfig.json');
 const bot = new irc.Client(server, botName, {channels: channels});
 const SQLite = require("better-sqlite3");
 const db = new SQLite('../db/userinputs.sqlite');
