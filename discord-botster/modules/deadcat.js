@@ -2,7 +2,7 @@
 // Edit secret.json so it includes your discord ID and the ID of someone you know that likes silly pranks.
 
 const { user } = require('../../conf/secret.json');
-const { owner } = require('../../conf/config.json')
+const { owner } = require('../../conf/discConfig.json')
 
 
 module.exports = {

@@ -1,7 +1,7 @@
 const { ChannelType } = require('discord.js');
-const { prefix } = require('../conf/config.json');
+const { prefix } = require('../../conf/discConfig.json');
 const SQLite = require("better-sqlite3");
-const db = new SQLite('./db/userinputs.sqlite');
+const db = new SQLite('../db/userinputs.sqlite');
 const fs = require('fs');
 const MarkovChain = require('markovchain');
 const commandFiles = fs.readdirSync('./modules/').filter(file => file.endsWith('.js'));

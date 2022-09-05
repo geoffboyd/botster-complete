@@ -1,4 +1,4 @@
-const { owner } = require("../../conf/config.json");
+const { owner } = require("../../conf/discConfig.json");
 
 module.exports = {
 	name: 'reload',

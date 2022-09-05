@@ -10,7 +10,7 @@ Discord botster v1.0rc using DiscordJS V14
 */
 
 const fs = require('fs');
-const { prefix, token, owner } = require('../conf/config.json');
+const { prefix, token, owner } = require('../conf/discConfig.json');
 const SQLite = require("better-sqlite3");
 const db = new SQLite('../db/userinputs.sqlite');
 const { Client, GatewayIntentBits, Partials } = require('discord.js');

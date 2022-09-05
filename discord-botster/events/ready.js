@@ -1,6 +1,6 @@
 const { ActivityType } = require('discord.js');
 const SQLite = require("better-sqlite3");
-const db = new SQLite('./db/userinputs.sqlite');
+const db = new SQLite('../db/userinputs.sqlite');
 
 module.exports = {
 	name: 'ready',

@@ -1,4 +1,4 @@
-const config = require("../conf/config.json");
+const config = require("../../conf/discConfig.json");
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
