@@ -13,16 +13,6 @@ Chatbot for Discord
 ## Add botster to your server, no setup required!
 [Click here](https://discord.com/api/oauth2/authorize?client_id=724806991947497554&permissions=8&scope=bot) to add botster directly to your Discord server now without having to set up an environment to run the bot yourself. If you'd rather self-host, keep reading below.
 
-## Installation
-1. Clone repo && cd into directory
-2. npm install
-3. Edit config.json file in ./conf to meet your needs
-4. node discord-botster.js
-  * Alternatively, use PM2 to run the bot in the background
-
-
-Note in case you choose to get rid of the existing database: You'll want to add a fortune, insult, or 8 ball prediction to generate the table to start collecting those things. The easiest way is just to run the insultadd command.
-
 ## Commands and usage
 The default prefix to send a bot command is `.`. You can change that in `./conf/config.jason` to instead use whatever character you choose. I'm going to use `.` below for my notation, but replace that with whatever you choose for your instance.
 - `.8ball` - Asks a Magic Eightball for guidance. Feed it a yes or no question, or just think your question. It knows all.
