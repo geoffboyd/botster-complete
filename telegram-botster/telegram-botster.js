@@ -34,7 +34,7 @@ console.log('\x1b[32m%s\x1b[0m', `Signed in to Telegram.`);
 
 bot.on('text', ctx => {
   if (ctx.message.from.is_bot) { return }
-  const channel = ctx.chat.id;
+  const channel = ctx.chat.id.toString();
   const from = ctx.message.from.first_name;
   let text = ctx.message.text;
 

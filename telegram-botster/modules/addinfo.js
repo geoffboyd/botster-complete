@@ -15,12 +15,12 @@ module.exports = {
     }
     let addInputs = db.prepare("INSERT INTO userinputs (user, channel, type, content, lastUsed, dateAdded) VALUES (@user, @channel, @type, @content, @lastUsed, @dateAdded);");
     let date = Math.floor(new Date() / 1000);
-    const dbObject = { user: from, channel: channel, type: contentType, content: text, lastUsed: date, dateAdded: date };
-    if (text.length > 0) {
+    const dbObject = { user: from, channel: channel.toString(), type: contentType, content: text, lastUsed: date, dateAdded: date };
+    try {
       addInputs.run(dbObject);
-      bot.telegram.sendMessage(channel, `A new ${phrase} has been added!`);
-    } else {
-      bot.telegram.sendMessage(channel, `You need to tell me the ${phrase} to add!`);
+    } catch (e) {
+      return bot.telegram.sendMessage(channel, `Something went wrong`);
     }
+    bot.telegram.sendMessage(channel, `A new ${phrase} has been added!`);
   }
 }
