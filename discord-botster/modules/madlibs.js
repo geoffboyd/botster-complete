@@ -11,7 +11,7 @@ module.exports = {
     const table = db.prepare(`SELECT count(*) FROM dictionary`).get();
     if (!table['count(*)']) { return msg.channel.send("Uh oh, my dictionary is empty :("); }
 
-    // Loop through all the different wordTypes and turn the MadLip into a story
+    // Loop through all the different wordTypes and turn the madlib into a story
     for (let i=0; i<wordTypes.length; i++){
       let searchKey = `{${wordTypes[i][0]}}`
       while (madlibPhrase.includes(searchKey)) {
