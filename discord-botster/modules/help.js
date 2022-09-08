@@ -69,11 +69,6 @@ module.exports = {
                                         inline: true,
                                       },
                                       {
-                                        name: `${config.prefix}dice`,
-                                        value: 'Roll a die. Optionally, choose number of sides.',
-                                        inline: true,
-                                      },
-                                      {
                                         name: `${config.prefix}draconic`,
                                         value: 'English-to-Draconic translator',
                                         inline: true,
@@ -84,6 +79,16 @@ module.exports = {
                                         inline: true,
                                       },
                                       {
+                                        name: `${config.prefix}madlibs`,
+                                        value: 'Feed botster a MadLibs',
+                                        inline: true,
+                                      },
+                                      {
+                                        name: `${config.prefix}roll`,
+                                        value: 'Roll a die. Optionally, choose number of sides.',
+                                        inline: true,
+                                      },
+                                      {
                                         name: `${config.prefix}rr [someone]`,
                                         value: 'Rick Roll someone',
                                         inline: true,
@@ -91,11 +96,6 @@ module.exports = {
                                       {
                                         name: `${config.prefix}slap [someone]`,
                                         value: 'Slaps the person you tag',
-                                        inline: true,
-                                      },
-                                      {
-                                        name: '\u200b',
-                                        value: '\u200b',
                                         inline: true,
                                       },
                                       {
