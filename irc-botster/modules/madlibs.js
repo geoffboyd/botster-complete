@@ -1,7 +1,7 @@
 module.exports = {
-  execute(msg, args, type) {
+  execute(bot, channel, args, from, to) {
     args.shift();
-    if (!args[0]) { return msg.channel.send('Tell me a story and leave out some words. If you are lucky my return will sound absurd. In their place type (verb), (adjective) or (noun) and perhaps what I’ll report will sound more profound'); }
+    if (!args[0]) { return bot.say(channel, 'Tell me a story and leave out some words. If you are lucky my return will sound absurd. In their place type (verb), (adjective) or (noun) and perhaps what I’ll report will sound more profound'); }
     let madlibPhrase = args.join(' ');
     const SQLite = require("better-sqlite3");
     const db = new SQLite('../db/userinputs.sqlite');
@@ -9,7 +9,7 @@ module.exports = {
 
     // Check if the table dictionary exists and has content.
     const table = db.prepare(`SELECT count(*) FROM dictionary`).get();
-    if (!table['count(*)']) { return msg.channel.send("Uh oh, my dictionary is empty :("); }
+    if (!table['count(*)']) { return bot.say(channel, "Uh oh, my dictionary is empty :("); }
 
     for (let i=0; i<wordTypes.length; i++){
       let searchKey = `(${wordTypes[i][0]})`;
@@ -22,6 +22,6 @@ module.exports = {
     firstLetter = firstLetter.toUpperCase();
     let restOfPhrase = madlibPhrase.slice(1, madlibPhrase.length);
     madlibPhrase = firstLetter + restOfPhrase;
-    msg.channel.send(madlibPhrase);
+    bot.say(channel, madlibPhrase);
   }
 }
