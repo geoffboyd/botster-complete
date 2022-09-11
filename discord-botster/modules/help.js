@@ -80,12 +80,12 @@ module.exports = {
                                       },
                                       {
                                         name: `${config.prefix}madlibs`,
-                                        value: 'Feed botster a MadLibs',
+                                        value: 'Feed botster a MadLib using `(noun)`, `(verb)`, `(adjective)`, or `(adverb)`',
                                         inline: true,
                                       },
                                       {
                                         name: `${config.prefix}roll`,
-                                        value: 'Roll a die. Optionally, choose number of sides.',
+                                        value: 'Roll a die. Optionally choose number of sides or add a modifier.',
                                         inline: true,
                                       },
                                       {
