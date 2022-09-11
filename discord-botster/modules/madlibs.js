@@ -5,7 +5,7 @@ module.exports = {
     let madlibPhrase = args.join(' ');
     const SQLite = require("better-sqlite3");
     const db = new SQLite('../db/userinputs.sqlite');
-    const wordTypes = ['word','noun','name','place','verb','adjective','adverb']
+    const wordTypes = ['noun','name','place','verb','adjective','adverb']
 
     // Check if the table dictionary exists and has content.
     const table = db.prepare(`SELECT count(*) FROM dictionary`).get();
