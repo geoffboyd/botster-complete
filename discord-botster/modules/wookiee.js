@@ -1,6 +1,8 @@
 module.exports = {
     name: 'wookiee',
-    description: 'Translate text into Wookiee',
+    description: 'English-to-Wookiee translator',
+    adminOnly: false,
+    visible: true,
     execute(msg, args) {
       args.shift();
     	let charCodes=new Array(55);

@@ -1,4 +1,9 @@
+
 module.exports = {
+  name: 'addinfo',
+  description: 'Add Info to database',
+  adminOnly: true,
+  visible: false,
   contentinfo(msg, args, contentType, phrase) {
     const SQLite = require("better-sqlite3");
     const db = new SQLite('../db/userinputs.sqlite');
@@ -17,7 +22,7 @@ module.exports = {
     content.shift();
     content = content.join(' ');
     let date = Math.floor(new Date() / 1000);
-    const dbObject = { user: msg.member.user.tag, channel: msg.guild.id, type: `${contentType}`, content: `${content}`, lastUsed: `${date}`, dateAdded: `${date}` };
+    const dbObject = { user: msg.member.user.tag, channel: msg.guild.id, type: contentType, content: content, lastUsed: date, dateAdded: date };
     if (content.length > 0) {
       addInputs.run(dbObject);
       msg.channel.send(`A new ${phrase} has been added!`);

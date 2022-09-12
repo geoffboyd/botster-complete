@@ -2,7 +2,9 @@ const { PermissionsBitField } = require('discord.js');
 
 module.exports = {
 	name: 'prune',
-	description: 'Prune up to 99 messages.',
+	description: 'Deletes the previous [number] messages (Max: 99)',
+	adminOnly: true,
+	visible: true,
 	execute(msg, args) {
 		args.shift();
 		if (!msg.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) { return msg.reply("You're not the boss of me.") }

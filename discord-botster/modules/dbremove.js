@@ -4,7 +4,9 @@ const db = new SQLite('../db/userinputs.sqlite');
 
 module.exports = {
   name: 'dbremove',
-  description: 'Delete something from the userinputs database',
+  description: 'Delete a fortune, insult, or 8 Ball prediction from the database',
+  adminOnly: true,
+  visible: true,
   execute(msg, args) {
     if (!msg.member.permissions.has(PermissionsBitField.Flags.Administrator, true)) { return msg.channel.send('Only admins can use this function.'); }
     args.shift();

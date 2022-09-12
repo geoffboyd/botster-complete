@@ -1,6 +1,8 @@
 module.exports = {
     name: 'josephus',
-    description: 'Test a number against the Josephus Problem',
+    description: 'Solves the [Josephus problem](https://en.wikipedia.org/wiki/Josephus_problem). Optionally change number of skips.',
+    adminOnly: false,
+    visible: true,
     execute(msg, args) {
     /*
       Josephus Problem

@@ -3,13 +3,14 @@ const { owner } = require("../../conf/discConfig.json");
 module.exports = {
 	name: 'reload',
 	description: 'Reloads a command',
-	args: true,
-	execute(msg, args, commandNames) {
+	adminOnly: true,
+	visible: false,
+	execute(msg, args, generalCommands, adminCommands) {
 		if (msg.author.id !== owner) { return msg.reply("https://media.giphy.com/media/VdWkLbTcqmw324kYFL/giphy.gif") }
 		if (!args[1]) { return msg.channel.send("You didn't provide a command name to reload"); }
 		const command = args[1].toLowerCase();
 
-		if (!commandNames.includes(command)) {
+		if (!generalCommands.includes(command) && !adminCommands.includes(command)) {
 			return msg.channel.send(`There is no command with name or alias \`${command}\`, ${msg.author.username}!`);
 		}
 

@@ -1,4 +1,8 @@
 module.exports = {
+  name: 'getcontent',
+  description: 'Random Content Grabber',
+  adminOnly: false,
+  visible: false,
   getcontent(msg, args, type) {
     args.shift();
     const SQLite = require("better-sqlite3");

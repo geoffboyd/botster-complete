@@ -2,8 +2,9 @@ const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 
 module.exports = {
 	name: 'kick',
-	description: 'Tag a member and kick them.',
-	guildOnly: true,
+	description: 'Kicks the tagged member',
+	adminOnly: true,
+	visible: true,
 	execute(msg) {
 		if (!msg.member.permissions.has(PermissionsBitField.Flags.KickMembers, true)) { return msg.reply("https://media.giphy.com/media/VdWkLbTcqmw324kYFL/giphy.gif") }
 		const taggedUser = msg.mentions.users.first().id;

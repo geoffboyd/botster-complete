@@ -1,6 +1,8 @@
 module.exports = {
   name: 'rr',
-  description: 'Rick Roll',
+  description: 'Rick Roll someone',
+  adminOnly: false,
+  visible: true,
   execute(msg, args) {
     args.shift();
     msg.delete();

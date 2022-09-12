@@ -1,6 +1,8 @@
-module.exports = { 
-    name: 'coin', 
-    description: 'Coin Toss', 
+module.exports = {
+    name: 'coin',
+    description: 'Flip a coin',
+    adminOnly: false,
+    visible: true,
     execute(msg, args) {
       flip = Math.ceil(Math.random()*Math.abs(Math.floor(2)))
       if (flip == 1) {

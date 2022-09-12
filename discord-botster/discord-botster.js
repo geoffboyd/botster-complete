@@ -27,7 +27,7 @@ const client = new Client({
 
 const eventFiles = fs.readdirSync('./events/').filter(file => file.endsWith('.js'));
 
-// I didn't write this function, it is plagiarismed.
+// I didn't write this, it is 100% plagiarismed.
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {

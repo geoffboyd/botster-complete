@@ -5,12 +5,15 @@
       * .roll 3d12
       * .roll 2d20 adv
       * .roll 2d20 dis
+      * .roll 3d12 +6
 */
 
 const { prefix } = require('../../conf/ircConfig.json');
 module.exports = {
   name: 'roll',
-  description: 'Dice roller',
+  description: 'Roll a die. Optionally choose number of sides or add a modifier.',
+  adminOnly: false,
+  visible: true,
   execute(msg, args) {
     let numberOfDice = 1;
     let numberOfSides = 6;

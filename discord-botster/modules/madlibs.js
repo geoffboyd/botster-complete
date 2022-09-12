@@ -1,5 +1,9 @@
 module.exports = {
-  execute(msg, args, type) {
+  name: 'madlibs',
+  description: 'Feed botster a MadLib using `(noun)`, `(verb)`, `(adjective)`, or `(adverb)`',
+  adminOnly: false,
+  visible: true,
+  execute(msg, args) {
     args.shift();
     if (!args[0]) { return msg.channel.send('Tell me a story and leave out some words. If you are lucky my return will sound absurd. In their place type (verb), (adjective) or (noun) and perhaps what I’ll report will sound more profound'); }
     let madlibPhrase = args.join(' ');

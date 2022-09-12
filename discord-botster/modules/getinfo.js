@@ -1,4 +1,8 @@
 module.exports = {
+  name:'getinfo',
+  description: 'Specific information about a database entry',
+  adminOnly: false,
+  visible: false,
   getinfo(msg, args, type) {
     const SQLite = require("better-sqlite3");
     const db = new SQLite('../db/userinputs.sqlite');

@@ -1,6 +1,8 @@
 module.exports = {
   name: 'jargon',
   description: "SteveTenant's Jargon Generator",
+  adminOnly: false,
+  visible: false,
   execute(msg, args, type) {
     let types = {};
     types['technical'] = {
@@ -177,6 +179,6 @@ module.exports = {
     }
 
     getJargon(type);
-    
+
   }
 }

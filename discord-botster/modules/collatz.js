@@ -1,6 +1,8 @@
 module.exports = {
   name: 'collatz',
-  description: 'Test a number against the Collatz Conjecture',
+  description: 'Solves the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture)',
+  adminOnly: false,
+  visible: true,
   execute(msg, args) {
     args.shift();
     const fs = require('fs');

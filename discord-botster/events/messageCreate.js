@@ -5,12 +5,30 @@ const db = new SQLite('../db/userinputs.sqlite');
 const fs = require('fs');
 const MarkovChain = require('markovchain');
 const commandFiles = fs.readdirSync('./modules/').filter(file => file.endsWith('.js'));
-let commandNames = [];
+let generalCommands = [];
+let adminCommands = [];
+let allCommands = [generalCommands, adminCommands];
 for (const file of commandFiles) {
   const command = require(`../modules/${file}`);
-  commandNames.push(file.replace('.js', ''));
+  if (!command.visible) { continue; }
+  let commandField = { name: command.name, value: command.description, inline: true }
+  if (command.adminOnly) {
+    adminCommands.push(commandField)
+  } else {
+    generalCommands.push(commandField)
+  }
 }
 
+for (const commandList of allCommands) {
+  if (commandList.length%3 === 1) {
+    commandList.splice(commandList.length, 0, { name: '\u200B', value: '\u200B', inline: true });
+    commandList.splice(commandList.length-2, 0, { name: '\u200B', value: '\u200B', inline: true })
+  }
+
+  if (commandList.length%3 === 2) {
+    commandList.splice(commandList.length-1, 0, { name: '\u200B', value: '\u200B', inline: true });
+  }
+}
 
 // Function to write chat messages to the database, CURRENTLY NOT WORKING
 function chatLog(channel, text, from) {
@@ -98,8 +116,9 @@ module.exports = {
       return thisCommand.execute(message, args, type);
     }
 
-    if (!commandNames.includes(commandAttempt)){ return console.log('\x1b[31m%s\x1b[0m', `${message.author.username} attempted to use a command that doesn't exist: ${commandAttempt}`) }
+    if (!generalCommands.find(o => o.name === commandAttempt) && !adminCommands.find(o => o.name === commandAttempt)) { return console.log('\x1b[31m%s\x1b[0m', `${message.author.username} attempted to use a command that doesn't exist: ${commandAttempt}`) }
+
     const commandToRun = require(`../modules/${commandAttempt}.js`);
-    commandToRun.execute(message, args, commandNames);
+    commandToRun.execute(message, args, generalCommands, adminCommands);
 	},
 };
