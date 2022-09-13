@@ -11,17 +11,17 @@ module.exports = {
 		const command = args[1].toLowerCase();
 
 		if (!generalCommands.includes(command) && !adminCommands.includes(command)) {
-			return msg.channel.send(`There is no command with name or alias \`${command}\`, ${msg.author.username}!`);
+			return msg.channel.send(`There is no command named \`${command}\`, ${msg.author.username}!`);
 		}
 
 		delete require.cache[require.resolve(`./${command}.js`)];
 
 		try {
 			const newCommand = require(`./${command}.js`);
-			msg.channel.send(`Command '${command}' was reloaded!`);
+			return msg.channel.send(`Command '${command}' was reloaded!`);
 		} catch (error) {
 			console.log(error);
-			msg.channel.send(`There was an error while reloading a command '${command}':\n\`${error.message}\``);
+			return msg.channel.send(`There was an error while reloading a command '${command}':\n\`${error.message}\``);
 		}
 	},
 };

@@ -68,6 +68,18 @@ module.exports = {
     let args = content.split(' ');
     let botName = message.guild.members.me.displayName
 
+    // If the bot owner needs to reload a command, this will make sure it gets taken care of first.
+    if (content.startsWith('.reload')) {
+      const reload = require('../modules/reload.js');
+      return reload.execute(msg, content.split(' '), generalCommands, adminCommands);
+    }
+
+    // If the bot owner needs to restart the bot, this will make sure it also gets top priority.
+    if (content.startsWith('.restart')) {
+      const restart = require('../modules/restart.js');
+      return restart.execute(message, content.split(' '));
+    }
+
     // Some important sensors for our gibberish triggers
     const triggerWords = [botName.toLowerCase(), 'audio', 'tech', 'excuse'];
     const randomFuckery = Math.ceil(Math.random()*30);
