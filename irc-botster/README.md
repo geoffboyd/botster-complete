@@ -17,7 +17,6 @@ The default prefix to send a bot command is `.`. You can change that in `./conf/
 - `.8binfo` - Tells you who added the most recently seen 8ball prediction, the database row it is saved on, and when it was added.
 - `.8bdelete [row number]` - When you use any of the info commands (8ballinfo, fcinfo, insultinfo), they tell you the database row that the response is stored in. You can remove responses by using this command. Doesn't work for responses labeled "Global".
 - `.collatz [number]` - Solves the [Collatz Conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture) for a given number.
-- `.dice` - Rolls a 6-sided die by default. If you add a number to the command, like `.8ball 20`, it rolls a die with the specified number of sides.
 - `.draconic` - Translate text from English into Draconic.
 - `.fortune` - Open a fortune cookie, see your fortune.
 - `.fcadd` - Add new fortunes for future fortune cookies.
@@ -34,6 +33,7 @@ The default prefix to send a bot command is `.`. You can change that in `./conf/
 - `.quote [words to search]` - Search the chatlog for a quote.
 - `.reload` - For the person running the bot, use this to reload commands instead of restarting the bot entirely.
 - `.restart` - For the person running the bot, sometimes you just need to restart it. This command does that. If you make changes to `./discord-botster.js`, this command will restart the bot and bring in the changes you made. MUST BE USING PM2 FOR THIS TO COMPLETE RESTARTING, otherwise it will just stop and you'll have to restart manually.
+- `.roll` - Rolls a 6-sided die by default. If you add a number to the command, like `.roll 20`, it rolls a die with the specified number of sides. `.roll 3d8`, `.roll 2d4 +4`, `.roll 2d20 adv`, `.roll 2d20 dis` all also work for more dice, modifiers, and/or advantage/disadvantage.
 - `.slap [someone]` - Slap someone around a little bit.
 - `.tictactoe` - Play a game of Tic Tac Toe.
 - `.ud [word or phrase]` - Look something up on Urban Dictionary

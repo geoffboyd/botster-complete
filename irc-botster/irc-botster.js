@@ -1,4 +1,13 @@
-// IRC botster v1.0
+/*
+ _           _       _
+| |         | |     | |
+| |__   ___ | |_ ___| |_ ___ _ __
+| '_ \ / _ \| __/ __| __/ _ \ '__|
+| |_) | (_) | |_\__ \ ||  __/ |
+|_.__/ \___/ \__|___/\__\___|_|
+
+IRC botster v1.0
+*/
 
 console.log('\x1b[32m%s\x1b[0m', 'Starting the botster IRC client...');
 
@@ -39,9 +48,6 @@ bot.addListener("kick", function(channel, name) {
 // Listen for messages
 bot.addListener("message", function(from, to, text, message) {
   const channel = message.args[0];
-
-  // Markov chain
-  let wordSalad = new MarkovChain(db.prepare(`SELECT content FROM chats WHERE channel = '${channel}' ORDER BY RANDOM();`).pluck().all().join(' '));
   const triggerWords = [botName.toLowerCase(), 'audio', 'tech', 'excuse'];
   const randomFuckery = Math.ceil(Math.random()*30);
 
@@ -55,8 +61,14 @@ bot.addListener("message", function(from, to, text, message) {
     if (randomFuckery !== 10 && !triggerWords.some(e => text.toLowerCase().includes(e))) { return };
   }
 
+  if (text.includes('audio') || text.includes('tech') || text.includes('excuse')) {
+    let thisCommand = require(`./modules/jargon.js`);
+    return thisCommand.execute(bot, channel, text.split(' '), from, to);
+  }
+
   if (text.toLowerCase().includes(botName.toLowerCase()) || randomFuckery === 10) {
     //Markov chain triggers here
+    let wordSalad = new MarkovChain(db.prepare(`SELECT content FROM chats WHERE channel = '${channel}' ORDER BY RANDOM();`).pluck().all().join(' '));
     let args = text.split(' ');
     let startWord = from;
     let phraseLength = (Math.ceil(Math.random()*((args.length + 10)*2)));
@@ -77,18 +89,12 @@ bot.addListener("message", function(from, to, text, message) {
       phrase = phrase.slice(0, -1);
     }
     const punct = ['.','?','!']
+    args = text.trim().toLowerCase().split(' ');
+    let commandAttempt = args[0].substring(1);
+    if (!commandNames.includes(commandAttempt)){ return console.log('\x1b[31m%s\x1b[0m', `${from} attempted to use a command that doesn't exist: ${commandAttempt}`) }
+    const commandToRun = require(`./modules/${commandAttempt}.js`);
     return bot.say(channel, phrase+punct[Math.floor(Math.random()*punct.length)]);
   }
-
-  if (text.includes('audio') || text.includes('tech') || text.includes('excuse')) {
-    let thisCommand = require(`./modules/jargon.js`);
-    return thisCommand.execute(bot, channel, text.split(' '), from, to);
-  }
-
-  args = text.trim().toLowerCase().split(' ');
-  let commandAttempt = args[0].substring(1);
-  if (!commandNames.includes(commandAttempt)){ return console.log('\x1b[31m%s\x1b[0m', `${from} attempted to use a command that doesn't exist: ${commandAttempt}`) }
-  const commandToRun = require(`./modules/${commandAttempt}.js`);
 
   // Are we playing TicTacToe, or using one of the more generic functions?
   if (commandAttempt === 'tictactoe') { commandToRun.execute(bot, channel, args); }
