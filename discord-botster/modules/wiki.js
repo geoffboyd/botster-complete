@@ -1,7 +1,9 @@
 module.exports = {
   name: 'wiki',
   description: 'Wikipedia lookup',
-  execute(bot, channel, args, from, to) {
+  adminOnly: false,
+  visible: true,
+  execute(message, args) {
     const wiki = require('wikipedia');
     args.shift();
     if (args[1]) {
@@ -22,7 +24,7 @@ module.exports = {
         for (entry of entries) {
           if (entry[0] !== 'extract') {continue} else {extract = entry[1]}
         }
-        bot.say(channel, extract);
+        message.channel.send(extract);
     	} catch (error) {
     		console.log(error);
     	}

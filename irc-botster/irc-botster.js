@@ -50,7 +50,6 @@ bot.addListener("message", function(from, to, text, message) {
   const channel = message.args[0];
   const triggerWords = [botName.toLowerCase(), 'audio', 'tech', 'excuse'];
   const randomFuckery = Math.ceil(Math.random()*30);
-
   // We don't respond to bot posts. Susie is the other bot that lives in botster's normal home channel
   if (from === botName || from === "Susie") { return };
 
@@ -89,13 +88,14 @@ bot.addListener("message", function(from, to, text, message) {
       phrase = phrase.slice(0, -1);
     }
     const punct = ['.','?','!']
-    args = text.trim().toLowerCase().split(' ');
-    let commandAttempt = args[0].substring(1);
-    if (!commandNames.includes(commandAttempt)){ return console.log('\x1b[31m%s\x1b[0m', `${from} attempted to use a command that doesn't exist: ${commandAttempt}`) }
-    const commandToRun = require(`./modules/${commandAttempt}.js`);
     return bot.say(channel, phrase+punct[Math.floor(Math.random()*punct.length)]);
   }
 
+  args = text.trim().toLowerCase().split(' ');
+  let commandAttempt = args[0].substring(1);
+  if (!commandNames.includes(commandAttempt)){ return console.log('\x1b[31m%s\x1b[0m', `${from} attempted to use a command that doesn't exist: ${commandAttempt}`) }
+  const commandToRun = require(`./modules/${commandAttempt}.js`);
+  
   // Are we playing TicTacToe, or using one of the more generic functions?
   if (commandAttempt === 'tictactoe') { commandToRun.execute(bot, channel, args); }
   else { commandToRun.execute(bot, channel, args, from, to, commandNames); }

@@ -31,7 +31,7 @@ module.exports = {
       db.pragma('journal_mode = wal');
     }
 
-		// FUCK IT, WE'LL DO IT LIVE. On the air in 3... 2... 1...
+		// FUCK IT, WE'LL DO IT LIVE. On the air in 3... 2... 1... 
     console.log('\x1b[32m%s\x1b[0m', `${client.user.username} is online!`);
 	},
 };

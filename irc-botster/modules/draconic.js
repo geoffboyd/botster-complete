@@ -10,7 +10,7 @@ module.exports = {
       // If the table isn't there, create it and setup the database correctly.
       db.prepare("CREATE TABLE draconic (row INTEGER NOT NULL PRIMARY KEY, common TEXT, draconic TEXT, notes TEXT, author TEXT);").run();
       // Ensure that the "row" row is always unique and indexed.
-      db.prepare("CREATE UNIQUE INDEX idx_fantasylanguages_row ON draconic (row);").run();
+      db.prepare("CREATE UNIQUE INDEX idx_draconic_row ON draconic (row);").run();
       db.pragma("synchronous = 1");
       db.pragma("journal_mode = wal");
     }

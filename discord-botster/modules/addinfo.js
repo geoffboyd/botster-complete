@@ -1,4 +1,3 @@
-
 module.exports = {
   name: 'addinfo',
   description: 'Add Info to database',
@@ -10,7 +9,7 @@ module.exports = {
     // Check if the table "userinputs" exists.
     const table = db.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'userinputs';").get();
     if (!table['count(*)']) {
-      // If the table isn't there, create it and setup the database correctly.
+      // If the table isn't there, (re)create it and setup the database correctly.
       db.prepare("CREATE TABLE userinputs (row INTEGER NOT NULL PRIMARY KEY, user TEXT, channel TEXT, type TEXT, content TEXT, lastUsed DATETIME, dateAdded DATETIME);").run();
       // Ensure that the "row" row is always unique and indexed.
       db.prepare("CREATE UNIQUE INDEX idx_userinputs_row ON userinputs (row);").run();

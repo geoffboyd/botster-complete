@@ -10,7 +10,7 @@ module.exports = {
 		if (!args[1]) { return msg.channel.send("You didn't provide a command name to reload"); }
 		const command = args[1].toLowerCase();
 
-		if (!generalCommands.includes(command) && !adminCommands.includes(command)) {
+		if (!generalCommands.find(o => o.name === command) && !adminCommands.find(o => o.name === command)) {
 			return msg.channel.send(`There is no command named \`${command}\`, ${msg.author.username}!`);
 		}
 

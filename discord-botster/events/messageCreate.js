@@ -71,7 +71,7 @@ module.exports = {
     // If the bot owner needs to reload a command, this will make sure it gets taken care of first.
     if (content.startsWith('.reload')) {
       const reload = require('../modules/reload.js');
-      return reload.execute(msg, content.split(' '), generalCommands, adminCommands);
+      reload.execute(message, content.split(' '), generalCommands, adminCommands);
     }
 
     // If the bot owner needs to restart the bot, this will make sure it also gets top priority.
