@@ -10,9 +10,6 @@
 # botster v1.0
 Chatbot for Discord, Telegram, and IRC
 
-## Add botster to your Discord server, no setup required!
-[Click here](https://discord.com/api/oauth2/authorize?client_id=724806991947497554&permissions=8&scope=bot) to add botster directly to your Discord server now without having to set up an environment to run the bot yourself. If you'd rather self-host, keep reading below.
-
 ## Installation
 1. Clone repo && `cd` into directory
 2. `npm install`
